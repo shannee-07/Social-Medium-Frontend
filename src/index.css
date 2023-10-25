@@ -16,8 +16,14 @@ body {
   max-height: 100vh;
   max-width: 100vw;
   overflow: hidden;
+  background-color: #000d14;
 }
 
 .Toastify__toast-theme--dark {
   background-color: #00000076 !important;
+}
+
+
+.test-colors{
+  color: #009ceb;
 }

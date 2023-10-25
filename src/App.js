@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import FriendSearch from "./pages/FriendSearch";
 import Navbar from "./pages/Navbar";
+
 export default function App() {
   return (
     <>

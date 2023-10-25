@@ -1,0 +1,141 @@
+.post {
+    background-color: #001e2f;
+    color: #fff;
+    padding: 16px;
+    border: 1px solid #000b11;
+    border-radius: 8px;
+    margin: 8px 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.post-header {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-info h3 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.user-info p {
+    font-size: 14px;
+}
+
+.post-caption {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.post-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.like-button {
+    color: #e5fff3;
+    /* color: #00e676; */
+}
+.like-button-liked {
+    color: #00ca68;
+}
+
+.dislike-button {
+    color: #fff4f6;
+    /* color: #ff1744; */
+}
+.dislike-button-disliked {
+    color: #ff0033;
+}
+
+.comment-button {
+    color: #cfe0ff;
+}
+
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.dark-mode-toggle label {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.dark-mode-toggle input {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+
+.post-profile-photo{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    margin-right: 8px;
+}
+.post-profile-photo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.post-elements{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-button{
+    margin-left: 7px;
+}
+
+.counts{
+    font-size: 14px;
+    color: rgb(182, 182, 182);
+    margin-top: 5px;
+}
+
+.category-text{
+    font-size: 12px;
+    color: rgb(177, 177, 177);
+}

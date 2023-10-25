@@ -5,9 +5,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
+    height: 50px;
     transition: all 0.3s ease;
+    /* box-shadow: 2px 5px 10px #ffffff; */
 }
+
+.dropdown-icons{
+    margin-top: 4px;
+}
+
 
 /* Navigation List */
 .navbar ul {
@@ -30,13 +36,13 @@
     transition: all 0.4s ease-out;
 }
 
-.user-name{
+.user-name {
     font-size: 15px;
 }
 
 
 
-.dropdown-content a{
+.dropdown-content a {
     font-size: 15px;
 }
 
@@ -92,3 +98,26 @@
 }
 
 /* Adjust colors in dark mode as needed */
+
+
+.profile-photo {
+    width: 40px;
+    /* You can adjust the size as needed */
+    height: 40px;
+    /* You can adjust the size as needed */
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    margin-right: 10px;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+
+}

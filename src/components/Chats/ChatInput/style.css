@@ -76,13 +76,14 @@
 
 /* Input container styles */
 .input-container {
-    width: 98%;
+    width: 96%;
     border-radius: 2rem;
     display: flex;
     align-items: center;
     gap: 2rem;
     background-color: #ffffff34;
     margin-left: 3px;
+    margin-right: 5px;
 }
 
 .input-container input {
@@ -122,4 +123,11 @@
 .input-container button svg {
     font-size: 2rem;
     color: white;
+}
+
+
+.image-send-icon{
+    color: white;
+    margin-left: 5px;
+    cursor: pointer;
 }

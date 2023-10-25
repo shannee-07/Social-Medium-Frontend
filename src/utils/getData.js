@@ -1,14 +1,17 @@
 import { host } from "./APIRoutes";
+import Cookies from "js-cookie";
 
 async function getData(url) {
-  url = `${host}/${url}`;
+  // url = `${host}/${url}`;
 
   try {
+    // console.log(Cookies.get("token"));
+    // return;
     const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${Cookies.get("jwt_token")}`
+        'Authorization': `Bearer ${Cookies.get("token")}`
       },
     });
 
@@ -23,6 +26,7 @@ async function getData(url) {
     const responseData = await response.json();
     return responseData;
   } catch (error) {
+    console.log(error);
     return {
       success: false,
       errorCode: 0,

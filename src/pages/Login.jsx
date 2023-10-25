@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-import Logo from "../assets/logo.svg";
+// import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginRoute } from "../utils/APIRoutes";
+import Cookies from "js-cookie";
+import Logo from "../assets/logo.png";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -18,9 +20,9 @@ export default function Login() {
     theme: "dark",
   };
   useEffect(() => {
-    if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
-      navigate("/");
-    }
+    // if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+    //   navigate("/");
+    // }
   }, []);
 
   const handleChange = (event) => {
@@ -55,6 +57,12 @@ export default function Login() {
           process.env.REACT_APP_LOCALHOST_KEY,
           JSON.stringify(data.user)
         );
+        Cookies.set("email",data.user.email);
+        Cookies.set("name",data.user.name);
+        Cookies.set("username",data.user.username);
+        Cookies.set("avatarImage",data.user.avatarImage);
+        Cookies.set("token",data.user.token);
+        console.log(data.user);
         navigate("/");
       }
     }
@@ -66,7 +74,6 @@ export default function Login() {
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
             <img src={Logo} alt="logo" />
-            <h1>snappy</h1>
           </div>
           <input
             type="text"
@@ -83,7 +90,7 @@ export default function Login() {
           />
           <button type="submit">Log In</button>
           <span>
-            Don't have an account ? <Link to="/register">Create One.</Link>
+            Don't have an account ? <Link to="/register">Register.</Link>
           </span>
         </form>
       </FormContainer>
@@ -100,7 +107,7 @@ const FormContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  background-color: #131324;
+  background-color: #000d14;
   .brand {
     display: flex;
     align-items: center;
@@ -126,18 +133,18 @@ const FormContainer = styled.div`
   input {
     background-color: transparent;
     padding: 1rem;
-    border: 0.1rem solid #4e0eff;
+    border: 0.1rem solid #00aaff;
     border-radius: 0.4rem;
     color: white;
     width: 100%;
     font-size: 1rem;
     &:focus {
-      border: 0.1rem solid #997af0;
+      border: 0.1rem solid #8ad8ff;
       outline: none;
     }
   }
   button {
-    background-color: #4e0eff;
+    background-color: #009be9;
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -146,15 +153,16 @@ const FormContainer = styled.div`
     border-radius: 0.4rem;
     font-size: 1rem;
     text-transform: uppercase;
+    transition: all 0.3s ease;
     &:hover {
-      background-color: #4e0eff;
+      background-color: #007ebd;
     }
   }
   span {
     color: white;
     text-transform: uppercase;
     a {
-      color: #4e0eff;
+      color: #009ceb;
       text-decoration: none;
       font-weight: bold;
     }

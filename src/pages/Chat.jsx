@@ -3,10 +3,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import styled from "styled-components";
-import { allUsersRoute, host } from "../utils/APIRoutes";
+import { allFriendsRoute, host } from "../utils/APIRoutes";
 import ChatContainer from "../components/Chats/ChatContainer/ChatContainer";
 import Contacts from "../components/Chats/Contacts/Contacts";
 import Welcome from "../components/Chats/Welcome/Welcome";
+import Cookies from "js-cookie";
+import getData from "../utils/getData";
+
+
 
 export default function Chat() {
   const navigate = useNavigate();
@@ -38,8 +42,8 @@ export default function Chat() {
 
   useEffect(async () => {
     if (currentUser) {
-      const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
-      setContacts(data.data);
+      const data = await getData(`${allFriendsRoute}`);
+      setContacts(data);
       // if (currentUser.isAvatarImageSet) {
       // } else {
       //   // navigate("/setAvatar");
@@ -66,7 +70,7 @@ export default function Chat() {
 }
 
 const Container = styled.div`
-  height: 94vh;
+  height: 92vh;
   width: 100vw;
   display: flex;
   flex-direction: column;

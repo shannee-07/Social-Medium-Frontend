@@ -13,7 +13,6 @@ export default function Contacts({ contacts, changeChat }) {
     setCurrentUserName(data.username);
     setCurrentUserImage(data.avatarImage);
 
-
   }, []);
 
   const changeCurrentChat = (index, contact) => {
@@ -45,7 +44,7 @@ export default function Contacts({ contacts, changeChat }) {
                     />
                   </div>
                   <div className="username">
-                    <h3>{contact.username}</h3>
+                    <h3>{contact.name}</h3>
                   </div>
                 </div>
               );
@@ -112,8 +111,20 @@ const Container = styled.div`
       align-items: center;
       transition: 0.5s ease-in-out;
       .avatar {
+        width:50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f2f2f2;
         img {
-          height: 3rem;
+          
+          width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
         }
       }
       .username {

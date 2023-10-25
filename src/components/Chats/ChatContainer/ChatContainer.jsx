@@ -114,7 +114,7 @@ export default function ChatContainer({ currentChat, socket }) {
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 10% 80% 10%;
+  grid-template-rows: 10% 79% 10%;
   gap: 0.1rem;
   overflow: hidden;
   @media screen and (min-width: 720px) and (max-width: 1080px) {
@@ -131,8 +131,22 @@ const Container = styled.div`
       align-items: center;
       gap: 1rem;
       .avatar {
+        width: 40px;
+        /* You can adjust the size as needed */
+        height: 40px;
+        /* You can adjust the size as needed */
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f2f2f2;
         img {
           height: 3rem;
+          width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
         }
       }
       .username {

@@ -36,6 +36,7 @@ export default function ChatInput({ handleSendMsg }) {
           {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
         </div>
       </div> */}
+      <FaFileImage size={28} className="image-send-icon"/>
       
       <form className="input-container" onSubmit={(event) => sendChat(event)}>
         <input
