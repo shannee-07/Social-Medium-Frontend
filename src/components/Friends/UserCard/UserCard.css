@@ -1,0 +1,64 @@
+/* User Card Container */
+.user-card {
+    background-color: #002f4a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    width: 350px;
+}
+
+/* User Avatar */
+.user-avatar {
+    margin-right: 20px;
+}
+
+.add-icon{
+    transition: all 0.3s ease;
+}
+.add-icon:hover{
+    color: #00aaff;
+}
+
+/* User Info */
+.user-info {
+    flex-grow: 1;
+}
+
+.user-info h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.user-info p {
+    margin: 0;
+    color: #aaa;
+}
+
+.user-info a {
+    text-decoration: none;
+    color: #00aaff;
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Add Friend Icon */
+.add-friend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Dark Mode */
+.user-card.dark-mode {
+    background-color: #111;
+    color: #fff;
+}
+
+/* Adjust colors in dark mode as needed */

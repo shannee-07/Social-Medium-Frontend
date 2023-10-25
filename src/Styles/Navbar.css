@@ -1,0 +1,94 @@
+/* Navbar Container */
+.navbar {
+    background-color: #000d14;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+/* Navigation List */
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    margin: 0 20px;
+}
+
+/* Navigation Links */
+.navbar a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    transition: all 0.4s ease-out;
+}
+
+.user-name{
+    font-size: 15px;
+}
+
+
+
+.dropdown-content a{
+    font-size: 15px;
+}
+
+/* Active Link Style */
+.navbar a.active {
+    color: #00aaff;
+}
+
+/* Hover Style */
+.navbar a:hover {
+    color: #6acdff;
+}
+
+/* Profile Dropdown */
+.profile-dropdown {
+    position: relative;
+}
+
+.profile-dropdown .profile {
+    cursor: pointer;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #69cdff;
+    color: black;
+}
+
+/* Show the dropdown when hovering over the profile link */
+.profile-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Dark Mode */
+.navbar.dark-mode {
+    background-color: #111;
+    color: #fff;
+}
+
+/* Adjust colors in dark mode as needed */

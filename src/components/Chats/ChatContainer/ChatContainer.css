@@ -1,0 +1,16 @@
+.options-icon{
+    color: white;
+    cursor: pointer;
+}
+
+.options{
+    /* display: hidden; */
+    position: relative;
+    top: 10px;
+}
+.hidden{
+    visibility: hidden;
+}
+.visible{
+    visibility: visible;
+}
