@@ -57,11 +57,11 @@ export default function Login() {
           process.env.REACT_APP_LOCALHOST_KEY,
           JSON.stringify(data.user)
         );
-        Cookies.set("email",data.user.email);
-        Cookies.set("name",data.user.name);
-        Cookies.set("username",data.user.username);
-        Cookies.set("avatarImage",data.user.avatarImage);
-        Cookies.set("token",data.user.token);
+        Cookies.set("email", data.user.email);
+        Cookies.set("name", data.user.name);
+        Cookies.set("username", data.user.username);
+        Cookies.set("avatarImage", data.user.avatarImage);
+        Cookies.set("token", data.user.token);
         console.log(data.user);
         navigate("/");
       }
@@ -88,7 +88,7 @@ export default function Login() {
             name="password"
             onChange={(e) => handleChange(e)}
           />
-          <button type="submit">Log In</button>
+          <button type="submit" style={{ textAlign: "center" }}>Log In</button>
           <span>
             Don't have an account ? <Link to="/register">Register.</Link>
           </span>
@@ -154,6 +154,10 @@ const FormContainer = styled.div`
     font-size: 1rem;
     text-transform: uppercase;
     transition: all 0.3s ease;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    line-height: 1;
     &:hover {
       background-color: #007ebd;
     }

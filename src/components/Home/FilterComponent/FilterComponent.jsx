@@ -1,17 +1,41 @@
-// FilterComponent.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FilterComponent.css';
+import { fetchCategoriesRoute } from '../../../utils/APIRoutes';
+import axios from 'axios';
 
-const categories = ["c1", "c2", "c3","c4", "c5", "c6","c7", "c8", "c9","c10", "c11"]
+// const categories = ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "c11"]
 
 const FilterComponent = () => {
     const [showCategories, setShowCategories] = useState(false);
     const [selectedFilter, setSelectedFilter] = useState('all');
     const [selectedType, setSelectedType] = useState('all');
     const [selectedCategories, setSelectedCategories] = useState([]);
+    const [categories, setCategories] = useState([]);
 
+    const selected = () => {
+        // console.log("NEW--------->")
+        // console.log("filter: ", selectedFilter);
+        // console.log("type: ", selectedType);
+        // console.log("categories: ", selectedCategories);
+    };
+
+    useEffect(() => {
+        selected(); // Call selected function when component mounts
+    }, [selectedFilter, selectedType, selectedCategories]); // Listen to changes in these state variables
+    useEffect(() => {
+        const fetchCategories = async () => {
+            const result = await axios.get(fetchCategoriesRoute);
+            console.log("CATEGORIES API--------->")
+
+            console.log(result.data.categories);
+
+            setCategories(result.data.categories);
+        }
+        fetchCategories();
+    }, [])
     const toggleCategories = () => {
         setShowCategories(!showCategories);
+        selected();
     };
 
     const handleCategorySelection = (category) => {
@@ -19,6 +43,7 @@ const FilterComponent = () => {
             ? selectedCategories.filter((item) => item !== category)
             : [...selectedCategories, category];
         setSelectedCategories(updatedCategories);
+        selected();
     };
 
     return (
@@ -33,15 +58,19 @@ const FilterComponent = () => {
                     <option value="friends">Friends Only</option>
                 </select>
             </div>
+            <br />
 
             <div className="filter-dropdown">
-                <label>Show:</label>
+                <label>Show Categories:</label>
                 <select
                     value={selectedType}
-                    onChange={(e) => setSelectedType(e.target.value)}
+                    onChange={(e) => {
+                        setSelectedType(e.target.value);
+                        // selected();
+                    }}
                 >
-                    <option value="all">Show All Types</option>
-                    <option value="interest">Show My Interests Only</option>
+                    <option value="all">All Categories</option>
+                    <option value="interest">My Interests Only</option>
                 </select>
             </div>
 
@@ -53,9 +82,10 @@ const FilterComponent = () => {
 
             {showCategories && (
                 <div className="filter-categories">
-                    <h3>Show List of Categories</h3>
-                    {categories.map((category) => (
-                        <label key={category}>
+                    <h5>Select Categories</h5>
+                    {categories.map((item) => {
+                        const category = item.category;
+                        return <label key={category}>
                             <input
                                 type="checkbox"
                                 value={category}
@@ -64,7 +94,7 @@ const FilterComponent = () => {
                             />
                             {category}
                         </label>
-                    ))}
+                    })}
                 </div>
             )}
         </div>

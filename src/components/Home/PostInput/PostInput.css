@@ -1,0 +1,158 @@
+/* Style for the dialog bar component */
+.dialog-bar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.844);
+    /* Semi-transparent background to blur the content */
+    z-index: 999;
+}
+
+.dialog-bar.open {
+    display: block;
+}
+
+.dialog-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    /* Dialog background color */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    background-color: rgb(14, 14, 14);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+/* CSS for the dark-themed dialog content */
+.dialog-content {
+    background-color: #000f1df5;
+    /* Dark background color */
+    color: #fff;
+    /* White text color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 50%;
+    /* Needed for absolute positioning of the cross-icon */
+}
+
+/* Style for the cross icon */
+.cross-icon {
+    position: absolute;
+    /* Position it within the dialog content */
+    top: 10px;
+    /* Adjust top value to control the position */
+    right: 10px;
+    /* Adjust right value to control the position */
+    cursor: pointer;
+    /* Add a pointer cursor on hover for usability */
+}
+
+/* Style for the inputs and textareas */
+.inputs {
+    margin: 20px 0;
+}
+
+.category-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.category-dropdown select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #072644f5;
+    /* Darker background color for input fields and button */
+    color: #fff;
+    /* White text color */
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #072644f5;
+    /* Darker background color for input fields and button */
+    color: #fff;
+    /* White text color */
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+    background-color: #007bff;
+    /* A contrasting color for the button */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: all 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+    /* Darker color on hover */
+}
+
+.center-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* PUblic checkbox */
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    /* margin: 10px; */
+}
+
+.checkbox-label {
+    color: #dcdcdc;
+    /* Text color */
+    margin-left: 10px;
+    background-color: transparent;
+}
+.checkbox-label:hover {
+    background-color: transparent;
+}
+
+/* Style for the checkbox input */
+.checkbox-input {
+    cursor: pointer;
+}
+
+/* Style for the checkbox status paragraph */
+.checkbox-status {
+    color: #dcdcdc;
+    margin-top: 5px;
+}

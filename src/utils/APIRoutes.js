@@ -12,3 +12,7 @@ export const fetchRequestsRoute = `${host}/api/auth/fetchRequests`;
 export const addFriendRoute = `${host}/api/auth/addFriend`;
 export const uploadImageRoute = `${host}/api/files/uploadImage`;
 export const changeProfilePhotoRoute = `${host}/api/auth/changeProfilePhoto`;
+// Posts
+export const fetchCategoriesRoute = `${host}/api/posts/fetchCategories`;
+export const createPostRoute = `${host}/api/posts/createPost`;
+export const fetchPostsRoute = `${host}/api/posts/fetchPosts`;

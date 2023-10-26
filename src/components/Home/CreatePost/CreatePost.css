@@ -1,0 +1,88 @@
+/* CreatePost.css */
+
+/* Theme: #0066bf */
+.create-post-container {
+    display: flex;
+    align-items: center;
+    background-color: #0066bf;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .create-post-container::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .create-post-container .create-post-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+    margin-right: 1rem;
+    position: relative;
+  }
+  
+  .create-post-container .create-post-image img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .create-post-container .create-post-image .image-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .create-post-container .create-post-input {
+    flex-grow: 1;
+  }
+  
+  .create-post-container .create-post-input textarea {
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    border-bottom: 1px solid #888;
+  }
+  
+  .create-post-container .create-post-input select {
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    border-bottom: 1px solid #888;
+    margin-top: 1rem;
+  }
+  
+  .create-post-container .create-post-button {
+    display: flex;
+    align-items: center;
+  }
+  
+  .create-post-container .create-post-button button {
+    background-color: #007ebd;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .create-post-container .create-post-button button:disabled {
+    background-color: #555; /* Disabled button color */
+    cursor: not-allowed;
+  }
+  

@@ -209,6 +209,10 @@ const FormContainer = styled.div`
     font-size: 1rem;
     text-transform: uppercase;
     transition: all 0.3s ease;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    line-height: 1;
     &:hover {
       background-color: #007ebd;
     }
