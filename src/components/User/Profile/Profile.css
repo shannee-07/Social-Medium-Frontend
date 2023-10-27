@@ -46,3 +46,8 @@ label {
 label:hover {
     background-color: #0056b3;
 }
+
+.user-details-pages{
+    width: 35%;
+    height: 100%;
+}

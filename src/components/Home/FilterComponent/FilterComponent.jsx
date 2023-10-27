@@ -5,8 +5,9 @@ import axios from 'axios';
 
 // const categories = ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "c11"]
 
-const FilterComponent = () => {
-    const [showCategories, setShowCategories] = useState(false);
+const FilterComponent = ({ callback }) => {
+    const [showCategories, setShowCategories] = useState(true);
+    const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
     const [selectedFilter, setSelectedFilter] = useState('all');
     const [selectedType, setSelectedType] = useState('all');
     const [selectedCategories, setSelectedCategories] = useState([]);
@@ -14,9 +15,15 @@ const FilterComponent = () => {
 
     const selected = () => {
         // console.log("NEW--------->")
-        // console.log("filter: ", selectedFilter);
-        // console.log("type: ", selectedType);
-        // console.log("categories: ", selectedCategories);
+        // console.log("filter: ", selectedFilter,"\n","type: ", selectedType,"\n"+"categories: ", selectedCategories);
+        const body = {
+            filters: selectedFilter,
+            interests: selectedType,
+            categories: selectedCategories
+        }
+        callback(body);
+        // console.log();
+        // console.log();
     };
 
     useEffect(() => {
@@ -25,16 +32,20 @@ const FilterComponent = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             const result = await axios.get(fetchCategoriesRoute);
-            console.log("CATEGORIES API--------->")
+            // console.log("CATEGORIES API--------->")
 
-            console.log(result.data.categories);
+            // console.log(result.data.categories);
 
             setCategories(result.data.categories);
         }
         fetchCategories();
     }, [])
     const toggleCategories = () => {
+        if (showCategories) {
+            setSelectedCategories([]);
+        }
         setShowCategories(!showCategories);
+        setShowCategoryDropdown(!showCategoryDropdown)
         selected();
     };
 
@@ -60,7 +71,7 @@ const FilterComponent = () => {
             </div>
             <br />
 
-            <div className="filter-dropdown">
+            {showCategoryDropdown ? <div className="filter-dropdown">
                 <label>Show Categories:</label>
                 <select
                     value={selectedType}
@@ -72,7 +83,7 @@ const FilterComponent = () => {
                     <option value="all">All Categories</option>
                     <option value="interest">My Interests Only</option>
                 </select>
-            </div>
+            </div> : null}
 
             <div className="filter-button">
                 <button onClick={toggleCategories}>
@@ -102,3 +113,5 @@ const FilterComponent = () => {
 };
 
 export default FilterComponent;
+
+

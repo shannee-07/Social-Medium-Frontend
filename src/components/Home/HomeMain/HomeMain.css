@@ -52,6 +52,12 @@
     border-radius: 1rem;
 }
 
+.create-post-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .create-post-button{
     transition: all 0.2s ease;
     border: 1px solid #0066bf;
@@ -60,6 +66,7 @@
     padding: 4px 8px;
     cursor: pointer;
     font-size: 15px;
+    width: fit-content;
 }
 .create-post-button:hover{
     font-size: 16px;

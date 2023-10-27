@@ -102,9 +102,7 @@
 
 .profile-photo {
     width: 40px;
-    /* You can adjust the size as needed */
     height: 40px;
-    /* You can adjust the size as needed */
     border-radius: 50%;
     overflow: hidden;
     display: flex;

@@ -6,15 +6,25 @@ import axios from "axios";
 import postData from "../../../utils/postData";
 import { fetchCategoriesRoute } from "../../../utils/APIRoutes";
 import LoadingOverlay from "../../LoadingOverlay/LoadingOverlay";
+import Notification from "../../Notification/Notification";
 
-
-const PostInput = ({ callback }) => {
+const PostInput = ({ callback ,notificationCallback}) => {
   const [file, setFile] = useState()
   const [categories, setCategories] = useState([{ category: 'Loading...' }]);
   const [description, setDescription] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("")
   const [isPublic, setIsPublic] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
+
+
+  const triggerNotification = (message) => {
+    setShowNotification(false);
+    setNotificationMessage(message);
+    setShowNotification(true);
+  }
 
   const handleCheckboxChange = () => {
     setIsPublic(!isPublic);
@@ -36,14 +46,14 @@ const PostInput = ({ callback }) => {
   }
 
   const submit = async event => {
+    event.preventDefault()
     // alert(selectedCategory);
     // return;
     if (!file && !description) {
-      alert("Please select image or description");
+      triggerNotification("Please select image or description")
       return;
     }
     setLoading(true);
-    event.preventDefault()
 
     const imageUrl = await imageUpload();
 
@@ -55,13 +65,14 @@ const PostInput = ({ callback }) => {
     }
     const response = await postData(createPostRoute, reqBody);
     if (response.success) {
-      alert("Success");
+      // notificationCallback()
+      // triggerNotification()
+      hide("Posted Successfully!")
     } else {
       console.log(response);
     }
     setLoading(false);
     // alert("SUCCESS");
-    // hide()
     // console.log(response);
 
   }
@@ -79,6 +90,8 @@ const PostInput = ({ callback }) => {
   return (
     <div className={`dialog-bar open`}>
       {loading ? <LoadingOverlay /> : null}
+      {showNotification ? <Notification message={notificationMessage} /> : null}
+
       <div className="dialog-content">
         <div className="cross-icon">
           <FaRegTimesCircle size={30} color="white" onClick={hide} />
@@ -103,7 +116,7 @@ const PostInput = ({ callback }) => {
               filename={file}
               onChange={e => setFile(e.target.files[0])}
               type="file"
-              accept="image/*"
+              accept=".jpeg, .jpg, .png"
               style={{ display: "block" }}
             ></input>
             <textarea onChange={e => setDescription(e.target.value)}

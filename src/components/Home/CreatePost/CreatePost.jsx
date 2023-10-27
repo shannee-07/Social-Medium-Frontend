@@ -17,24 +17,10 @@ const CreatePost = () => {
         const selectedFile = e.target.files[0];
         setFile(selectedFile);
         setSelectedImage(selectedFile);
-
-        // const formData = new FormData();
-        // formData.append("image", selectedFile);
-
-        // const result = await axios.post(uploadImageRoute, formData, {
-        //     headers: { 'Content-Type': 'multipart/form-data' }
-        // });
-
-        // if (result.data.success) {
-        //     setSelectedImage(result.data.imageUrl);
-        // }
     }
 
     return (
         <div className="upper-container">
-            {/* <div className="input-image">
-                <img src={selectedImage} alt="User Avatar" />
-            </div> */}
             <br />
             <div className="">
                 <form>
@@ -43,7 +29,7 @@ const CreatePost = () => {
                             filename={file}
                             onChange={imageChange}
                             type="file"
-                            accept="image/*"
+                            accept="image/png, image/jpeg, image/jpg"
                             style={{display: "block"}}
                         />
                 </form>

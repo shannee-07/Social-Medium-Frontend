@@ -8,10 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { loginRoute } from "../utils/APIRoutes";
 import Cookies from "js-cookie";
 import Logo from "../assets/logo.png";
+import LoadingOverlay from "../components/LoadingOverlay/LoadingOverlay";
 
 export default function Login() {
   const navigate = useNavigate();
   const [values, setValues] = useState({ username: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -44,6 +46,7 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
+      setLoading(true);
       const { username, password } = values;
       const { data } = await axios.post(loginRoute, {
         username,
@@ -65,11 +68,14 @@ export default function Login() {
         console.log(data.user);
         navigate("/");
       }
+      setLoading(false);
     }
+    setLoading(false);
   };
 
   return (
     <>
+      {loading ? <LoadingOverlay /> : null}
       <FormContainer>
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">

@@ -1,0 +1,104 @@
+/* Dark theme styles */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    /* Three items in one row */
+    grid-gap: 20px;
+    padding: 20px;
+    background-color: #061f3c;
+    color: #fff;
+    overflow: scroll;
+    height: 96vh;
+}
+
+.button-area {
+    position: fixed;
+    bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.submit-text {
+    background-color: #e9c600;
+    width: 160px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: 500;
+    color: #061f3c;
+}
+
+.submit-text:hover {
+    background-color: #c3a600;
+}
+
+.category-grid::-webkit-scrollbar {
+    width: 0.2rem;
+}
+
+.category-grid::-webkit-scrollbar-thumb {
+    background-color: #001e2f;
+    width: 0.1rem;
+    border-radius: 1rem;
+}
+
+.category-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #132028;
+    cursor: pointer;
+}
+
+.category-items-selected {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #007bff;
+    cursor: pointer;
+}
+
+/* background-color: red; */
+.category-items svg,
+.category-items-selected svg {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.category-name {
+    font-size: 1rem;
+}
+
+.category-name::after {
+    /* content: " Category"; */
+    font-size: 0.8rem;
+}
+
+.category-items:hover {
+    background-color: #00436d;
+    border-color: #000000;
+    color: #FFFFFF;
+}
+
+/* Media query for larger screens (adjust as needed) */
+@media (min-width: 768px) {
+    .category-grid {
+        grid-template-columns: repeat(6, 1fr);
+        /* Three items in one row for larger screens */
+    }
+}

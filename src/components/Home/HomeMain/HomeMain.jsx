@@ -7,47 +7,7 @@ import { useState, useEffect } from "react";
 import postData from "../../../utils/postData";
 import { fetchPostsRoute } from "../../../utils/APIRoutes";
 import Spinner from "../../Spinner/Spinner";
-
-
-const samplePosts = [
-    {
-        id: 1,
-        avatarImage: 'URL_TO_AVATAR_1',
-        username: 'user1',
-        fullName: 'User One',
-        caption: 'This is the first post.',
-        imageSrc: 'URL_TO_IMAGE_1',
-        category: 'Health & Fitness',
-        likes: ['shannee', 'lorem', 'sd', 'asdf', 'asdf', 'sdlfk'],
-        dislikes: ['sdkf', 'sdf', 'sdlk'],
-        comments: ['dsk']
-    },
-    {
-        id: 2,
-        avatarImage: 'URL_TO_AVATAR_1',
-        username: 'user1',
-        fullName: 'User One',
-        caption: 'This is the first post.',
-        imageSrc: 'URL_TO_IMAGE_1',
-        category: 'Health & Fitness',
-        likes: ['d', 'lorem', 'sd', 'asdf', 'asdf', 'sdlfk'],
-        dislikes: ['sdkf', 'shannee', 'sdlk'],
-        comments: ['dsk']
-    },
-    {
-        id: 3,
-        avatarImage: 'URL_TO_AVATAR_1',
-        username: 'user1',
-        fullName: 'User One',
-        caption: 'This is the first post.',
-        imageSrc: 'URL_TO_IMAGE_1',
-        category: 'Health & Fitness',
-        likes: ['shanngee', 'lorem', 'sd', 'asdf', 'asdf', 'sdlfk'],
-        dislikes: ['sdkf', 'sdf', 'sdlk'],
-        comments: ['dsk']
-    },
-    // Add more posts as needed
-];
+import Notification from "../../Notification/Notification";
 
 
 const trendingCategories = [
@@ -75,29 +35,48 @@ const HomeMain = () => {
     const [showCreatePost, setShowCreatePost] = useState(false);
     const [loadingPosts, setLoadingPosts] = useState(true);
     const [posts, setPosts] = useState([]);
-    const hideCreatePost = () => {
-        setShowCreatePost(false);
+    const [notificationMessage, setNotificationMessage] = useState("");
+    const [showNotification, setShowNotification] = useState(false);
+
+
+    const triggerNotification = (message) => {
+        if(!message){
+            message="Posted Successfully";
+        }
+        setShowNotification(false);
+        setNotificationMessage(message);
+        setShowNotification(true);
     }
 
+    const hideCreatePost = (message) => {
+        setShowCreatePost(false);
+        triggerNotification(message);
+    }
+
+    const fetchPostsAPI = async (reqBody) => {
+        console.log(reqBody);
+        const result = await postData(fetchPostsRoute, reqBody);
+        // conso
+        setPosts(result.posts);
+        setLoadingPosts(false);
+        // console.log("RESULT OF FETCH POSTS:")
+        // console.log(result);
+    }
     useEffect(() => {
-        const apiCall = async () => {
-            const result = await postData(fetchPostsRoute, {});
-            setPosts(result.posts);
-            setLoadingPosts(false);
-            console.log("RESULT OF FETCH POSTS:")
-            console.log(result);
-        }
-        apiCall();
+        fetchPostsAPI({
+            filters: "all",
+            interests: "all",
+            categories: []
+        });
     }, [])
     return (
         <div className="home-container">
+            {showNotification ? <Notification message={notificationMessage} /> : null}
+
             <div className="filters">
-                <FilterComponent />
+                <FilterComponent notificationCallback={triggerNotification} callback={fetchPostsAPI} />
             </div>
             {loadingPosts ? <Spinner /> : <div className="posts-container">
-                <div className="create-post-button" onClick={() => { setShowCreatePost(true) }}>
-                    CREATE A POST
-                </div>
                 {showCreatePost ? <PostInput callback={hideCreatePost} /> : null}
                 {posts.map((post) => (
                     <Post
@@ -109,6 +88,11 @@ const HomeMain = () => {
 
 
             <div className="trending-container">
+                <div className="create-post-container">
+                    <div className="create-post-button" onClick={() => { setShowCreatePost(true) }}>
+                        CREATE A POST
+                    </div>
+                </div>
                 <TrendingCategories trendingCategories={trendingCategories} />
             </div>
         </div>

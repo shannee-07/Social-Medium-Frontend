@@ -12,7 +12,6 @@
 }
 .trending-categories-container::-webkit-scrollbar {
     width: 0.2rem;
-    /* background-color: #f5f5f5; */
 }
 .trending-categories-container::-webkit-scrollbar-thumb {
     background-color: #001e2f;
@@ -50,4 +49,12 @@
 .post-count {
     color: #aaa;
     font-size: 0.9rem;
+}
+
+.username{
+    font-style: italic;
+}
+
+.username, .posts-count{
+    color: rgb(189, 189, 189);
 }

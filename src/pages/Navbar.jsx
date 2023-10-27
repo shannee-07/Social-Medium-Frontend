@@ -6,7 +6,7 @@ import FriendSearch from './FriendSearch';
 import "../Styles/background.css"
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import Profile from '../components/User/Profile';
+import Profile from '../components/User/Profile/Profile';
 import HomeMain from '../components/Home/HomeMain/HomeMain';
 
 function Navbar() {
