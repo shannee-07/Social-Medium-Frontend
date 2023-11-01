@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import FriendSearch from "./pages/FriendSearch";
 import Navbar from "./pages/Navbar";
+import Profile from "./components/User/Profile/Profile";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/setAvatar" element={<SetAvatar />} />
           <Route path="/friendSearch" element={<FriendSearch />} />
           <Route path="/" element={<Navbar />} />
+          <Route path="/profile/:username" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </>

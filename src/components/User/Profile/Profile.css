@@ -1,6 +1,5 @@
-/* Profile.css */
 
-/* Style for the container holding the input and circular avatar */
+/* content */
 .upper-container {
     display: flex;
     flex-direction: column;
@@ -47,7 +46,45 @@ label:hover {
     background-color: #0056b3;
 }
 
+
+.main-profile-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* margin: 0px 80px; */
+}
 .user-details-pages{
     width: 35%;
     height: 100%;
+}
+
+.user-posts-container {
+    overflow-y: auto;
+    max-height: 95vh;
+    margin-bottom: 20px;
+    width: 55%;
+}
+.user-posts-container::-webkit-scrollbar {
+    width: 0.2rem;
+}
+.user-posts-container::-webkit-scrollbar-thumb {
+    background-color: #ffffff39;
+    width: 0.1rem;
+    border-radius: 1rem;
+}
+
+.arrow-icon{
+    transition: all 0.2s ease;
+    color: white;
+}
+.arrow-icon:hover{
+    color: #00aaff;
+    cursor: pointer;
+}
+
+.header-text{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 15px;
 }

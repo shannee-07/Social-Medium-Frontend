@@ -6,14 +6,20 @@ import postData from '../../../utils/postData';
 import { uploadImageRoute, changeProfilePhotoRoute, fetchProfileDetailsRoute } from '../../../utils/APIRoutes';
 import axios from "axios";
 import getData from '../../../utils/getData';
+import { FaUserCheck, FaUserPlus, FaUserClock } from "react-icons/fa";
 
-const UserDetails = ({ callback }) => {
+
+const UserDetails = ({ callback, user }) => {
     const [file, setFile] = useState();
     const [loading, setLoading] = useState(false);
-    const [user, setUser] = useState({});
+    // const [user, setUser] = useState({});
     const [selectedImage, setSelectedImage] = useState(
-        Cookies.get("avatarImage")
+        user.avatarImage
     );
+    let isMyProfile= false;
+    if(user.username === Cookies.get("username")){
+        isMyProfile=true;
+    }
 
     const imageChange = async (e) => {
         setLoading(true);
@@ -33,6 +39,7 @@ const UserDetails = ({ callback }) => {
             }
             const response = await postData(changeProfilePhotoRoute, reqBody);
             if (response.success) {
+                
                 Cookies.set("avatarImage", result.data.imageUrl)
                 setSelectedImage(result.data.imageUrl);
                 setLoading(false);
@@ -45,23 +52,7 @@ const UserDetails = ({ callback }) => {
         setLoading(false);
     }
 
-    const fetchDetails = async () => {
-        setLoading(true);
-        let details = await getData(fetchProfileDetailsRoute);
-        console.log(details);
-        setUser(details);
-        setLoading(false);
-    }
-    useEffect(() => {
-        fetchDetails();
-    }, [])
 
-    // const user = {
-    //     username: 'exampleUser',
-    //     name: 'John Doe',
-    //     postsCount: 10,
-    //     categories: ['Category1', 'Category2', 'Category3','Category1', 'Category2', 'Category3','Category1', 'Category2', 'Category3','Category1', 'Category2', 'Category3','Category1', 'Category2', 'Category3','Category1', 'Category2', 'Category3',],
-    // };
 
     return (
         <>
@@ -73,7 +64,7 @@ const UserDetails = ({ callback }) => {
                             <img src={selectedImage} alt="User Avatar" />
                         </div>
                         <br />
-                        <div className="">
+                        {isMyProfile ? <div className="">
                             <form >
                                 <label class="custom-file-upload">
                                     <input
@@ -85,22 +76,29 @@ const UserDetails = ({ callback }) => {
                                     Change Profile
                                 </label>
                             </form>
-                        </div>
+                        </div> : null}
                     </div>
                     <div className="profile-details">
-                        <h2 className='details-element name'>{user.name}</h2>
+                        <div className="user-name-container">
+                            <h3 className='details-element name'>{user.name}</h3>
+                            {isMyProfile?null:user.isFriend ?
+                                < FaUserCheck className='user-type-icon' size={20} />
+                                : user.reqSent ?
+                                    < FaUserClock className='user-type-icon' size={20} />
+                                    : < FaUserPlus className='user-type-icon' size={20} />}
+                        </div>
                         <p className='details-element username'>@{user.username}</p>
-                        <p className='details-element posts-count'>{user.result} Posts</p>
+                        <p className='details-element posts-count'>{user.postsCount} Posts</p>
                     </div>
-                    <div className="edit-buttons">
+                    {/* <div className="edit-buttons">
                         <button className="edit-button">Edit Details</button>
 
-                    </div>
+                    </div> */}
                 </div>
                 <div className="category-section">
                     <div className="category-heading">
                         <h3>Interests:</h3>
-                        <button onClick={callback} className="edit-button">Edit Categories</button>
+                        {isMyProfile ? <button onClick={callback} className="edit-button">Edit Categories</button> : null}
                     </div>
                     <ul>
                         {user && user.categories && user.categories.map((category, index) => (

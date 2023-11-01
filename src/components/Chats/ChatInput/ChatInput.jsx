@@ -30,23 +30,18 @@ export default function ChatInput({ handleSendMsg }) {
   return (
     // <Container>
     <div className="parent-container">
-      {/* <div className="button-container">
-        <div className="emoji">
-          <BsEmojiSmileFill onClick={handleEmojiPickerhideShow} />
-          {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
-        </div>
-      </div> */}
       <FaFileImage size={28} className="image-send-icon"/>
       
       <form className="input-container" onSubmit={(event) => sendChat(event)}>
         <input
           type="text"
-          placeholder="type your message here"
+          placeholder="Type your message here"
           onChange={(e) => setMsg(e.target.value)}
           value={msg}
         />
+        {/* <div onClick={submit} className="submit-button"></div> */}
         <button type="submit">
-          <IoMdSend className="button" />
+          <IoMdSend size={23} className="button" />
         </button>
       </form>
     </div>

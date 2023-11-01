@@ -1,88 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LoadingOverlay from "../../LoadingOverlay/LoadingOverlay";
 import Cookies from "js-cookie";
 import postData from "../../../utils/postData";
-import { uploadImageRoute, changeProfilePhotoRoute } from "../../../utils/APIRoutes";
+import { uploadImageRoute, changeProfilePhotoRoute, fetchProfileDetailsRoute } from "../../../utils/APIRoutes";
 import axios from "axios";
 import "./Profile.css"
 import CategoryGrid from "../../CategoryGrid/CategoryGrid";
 import UserDetails from "../UserDetails/UserDetails";
+import getData from "../../../utils/getData";
+import Post from "../../Home/Post/Post";
+import { FaRegArrowAltCircleLeft ,FaUserPlus,FaUserClock} from "react-icons/fa";
+import { useParams, useNavigate } from "react-router-dom";
+
 
 const Profile = () => {
     const [file, setFile] = useState();
     const [showCategoryGrid, setShowCategoryGrid] = useState(false);
+    const [user, setUser] = useState({});
 
-    const [loading, setLoading] = useState(false);
-    const [selectedImage, setSelectedImage] = useState(
-        Cookies.get("avatarImage")
-    );
+    const [loading, setLoading] = useState(true);
+    const [selectedImage, setSelectedImage] = useState();
+
+    const { username } = useParams();
+    const navigate = useNavigate();
 
     const callbackCategoryGrid = () => {
-        setShowCategoryGrid(true);
+        setShowCategoryGrid(!showCategoryGrid);
     }
 
-    const imageChange = async (e) => {
+    const fetchDetails = async () => {
         setLoading(true);
-        const selectedFile = e.target.files[0];
-        setFile(selectedFile);
-
-        const formData = new FormData();
-        formData.append("image", selectedFile);
-
-        const result = await axios.post(uploadImageRoute, formData, {
-            headers: { 'Content-Type': 'multipart/form-data' }
-        });
-
-        if (result.data.success) {
-            const reqBody = {
-                imageUrl: result.data.imageUrl
-            }
-            const response = await postData(changeProfilePhotoRoute, reqBody);
-            if (response.success) {
-                Cookies.set("avatarImage", result.data.imageUrl)
-                setSelectedImage(result.data.imageUrl);
-                setLoading(false);
-            } else {
-                alert('Failed to update profile photo');
-            }
-        } else {
-            alert('Failed to update profile picture');
+        let details = await getData(`${fetchProfileDetailsRoute}?username=${username}`);
+        if (!details.success) {
+            alert("Failed to load profile");
         }
+        console.log(details);
+        setUser(details);
+        setSelectedImage(user.avatarImage);
         setLoading(false);
     }
-
+    const handleArrowClick = () => {
+        navigate(-1);
+    }
+    useEffect(() => {
+        fetchDetails();
+    }, [])
     return (
         <>
-            {loading ? <LoadingOverlay /> : null}
-            {showCategoryGrid ? <CategoryGrid /> :
-                <div className="user-details-pages">
-                    <UserDetails callback={callbackCategoryGrid} />
+
+            {loading ? <LoadingOverlay /> : showCategoryGrid ? null :
+                <div className="">
+                    <div className="profile-header">
+                        <FaRegArrowAltCircleLeft size={35} className="arrow-icon" onClick={handleArrowClick} />
+                        <span className="header-text">User Profile</span>
+                    </div>
+                    <div className="main-profile-container">
+                        <div className="user-details-pages">
+                            <UserDetails user={user} callback={callbackCategoryGrid} />
+                        </div>
+                        <div className="user-posts-container">
+                            {user.posts.map((post) => {
+                                return <Post post={post} key={post._id} />
+                            })}
+                        </div>
+                    </div>
+
                 </div>
+
             }
+            {showCategoryGrid ? <CategoryGrid  callback={callbackCategoryGrid}/> : null}
+
         </>
     );
 };
 
 export default Profile;
-
-
-{/* <div className="upper-container">
-    <div className="circular-avatar">
-        <img src={selectedImage} alt="User Avatar" />
-    </div>
-    <br />
-    <div className="">
-        <form >
-            <label class="custom-file-upload">
-                <input
-                    filename={file}
-                    onChange={imageChange}
-                    type="file"
-                    accept=".jpeg, .jpg, .png"
-                />
-                Change Profile
-            </label>
-        </form>
-    </div>
-    <button onClick={() => { setShowCategoryGrid(true) }}>CATEGORY GRID</button>
-</div> */}

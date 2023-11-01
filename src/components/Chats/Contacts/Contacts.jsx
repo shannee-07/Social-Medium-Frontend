@@ -90,7 +90,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    gap: 0.8rem;
+    gap: 0.2rem;
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
@@ -101,15 +101,19 @@ const Container = styled.div`
     }
     .contact {
       background-color: #005985;
-      min-height: 5rem;
+      min-height: 4rem;
       cursor: pointer;
       width: 90%;
       border-radius: 0.2rem;
-      padding: 0.4rem;
+      padding: 0rem 0.4rem;
       display: flex;
       gap: 1rem;
       align-items: center;
       transition: 0.5s ease-in-out;
+      :hover{
+      min-height: 4.3rem;
+
+      }
       .avatar {
         width:50px;
         height: 50px;

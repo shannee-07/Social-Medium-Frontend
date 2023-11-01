@@ -122,3 +122,18 @@ label:hover {
     align-items: center;
 }
 
+.user-name-container{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+.user-name-container h3{
+    margin-right: 4px;
+}
+.user-type-icon{
+    color: #2daceb;
+    cursor: pointer;
+}
+.user-type-icon:hover{
+    color: #248cbf;
+}

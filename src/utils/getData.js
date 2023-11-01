@@ -36,4 +36,4 @@ async function getData(url) {
   }
 }
 
-export default getData
+export default getData;

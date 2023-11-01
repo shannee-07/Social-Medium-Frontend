@@ -1,16 +1,17 @@
 /* Navbar Container */
 .navbar {
-    background-color: #000d14;
+    background: linear-gradient(to bottom, #083953, #132a38);
     color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
+    height: 45px;
     transition: all 0.3s ease;
-    /* box-shadow: 2px 5px 10px #ffffff; */
 }
 
-.dropdown-icons{
+
+
+.dropdown-icons {
     margin-top: 4px;
 }
 
@@ -20,6 +21,7 @@
     list-style: none;
     padding: 0;
     display: flex;
+    height: 90%;
 }
 
 .navbar ul li {
@@ -54,6 +56,7 @@
 /* Hover Style */
 .navbar a:hover {
     color: #6acdff;
+    /* background-color: black; */
 }
 
 /* Profile Dropdown */
@@ -72,6 +75,7 @@
     background-color: #333;
     min-width: 160px;
     z-index: 1;
+    cursor: pointer;
 }
 
 .dropdown-content a {
@@ -117,5 +121,84 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+}
 
+
+.navbar-option-text {
+    font-size: 11px;
+    margin-top: 3px;
+    margin-bottom: 12px;
+}
+
+.navbar-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-bar {
+    position: absolute;
+    top: 40px;
+    /* Adjust the top position as needed */
+    /* right: 0; */
+    width: 300px;
+    /* Adjust the width as needed */
+    background-color: #008ed5;
+    /* Dark background color */
+    color: #fff;
+    /* Text color */
+    border: 1px solid #555;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-left: 240px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.notification-bar::-webkit-scrollbar {
+    width: 0.2rem;
+}
+
+.notification-bar::-webkit-scrollbar-thumb {
+    background-color: #001e2f;
+    width: 0.1rem;
+    border-radius: 1rem;
+}
+
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #0076b1;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+/* Styling for the notification icon (optional) */
+.notification-icon {
+    color: #ff9900;
+    /* Custom notification icon color */
+}
+
+.new-alerts-alert{
+    position: absolute;
+    z-index: 5px;
+    top: 2px;
+    /* right: 0px; */
+    background-color: rgb(255, 0, 0);
+    border-radius: 50%;
+    padding: 2px;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 13px;
+}
+.new-alerts-alert p {
+    color: rgb(255, 255, 255);
+    font-size: 13px;
 }

@@ -1,16 +1,24 @@
-.options-icon{
-    color: white;
-    cursor: pointer;
+
+
+.show-date{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(228, 228, 228);
+    font-size: 15px;
 }
 
-.options{
-    /* display: hidden; */
-    position: relative;
-    top: 10px;
+.msg-time-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    /* margin-left: 100%; */
 }
-.hidden{
-    visibility: hidden;
-}
-.visible{
-    visibility: visible;
+.msg-time{
+    font-size: 12px;
+    padding-top: 6px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    color: #144e57;
 }

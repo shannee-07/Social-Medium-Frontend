@@ -2,7 +2,7 @@
 
 .comments-container {
     width: 100%;
-    background-color: #001e2f;
+    background-color: #002c44;
     color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -12,6 +12,7 @@
 .comment {
     display: flex;
     margin: 10px 0;
+
 }
 
 .user-photo {
@@ -24,38 +25,61 @@
 
 .comment-content {
     flex-grow: 1;
+    margin-left: 5px;
+    max-width: 90%;
+    background-color: #002334;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 5px;
 }
 
 .comment-username {
-    color: #008ace;
-    /* Usernames in blue */
+    color: #009eed;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.comment-username:hover {
     font-weight: bold;
 }
 
 .comment-text {
     margin: 5px 0;
+    font-size: 14px;
+
 }
 
 .comment-timestamp {
     color: #888;
     /* Timestamp in gray */
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .comment-input {
     margin-top: 20px;
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
 }
 
+
 .comment-input input {
+    background-color: transparent;
+    padding: 0.8rem;
+    border: 0.1rem solid #00aaff;
+    border-radius: 0.4rem;
+    color: white;
     width: 100%;
-    padding: 10px;
-    border: 1px solid #00131c;
-    border-radius: 5px;
-    margin-right: 10px;
-    background-color: #00324f;
-    color: rgb(227, 227, 227);
+    font-size: 1rem;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.comment-input input::placeholder {
+    color: #e6e6e6;
 }
 
 .comment-input button {
@@ -63,8 +87,25 @@
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 9px 8px;
     cursor: pointer;
+    margin-top: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.comment-input button:hover {
+    background-color: #007cba;
+}
+
+
+
+.visible-element {
+    display: block;
+}
+
+.invisible-element {
+    display: none;
 }
 
 .comment-user-photo {

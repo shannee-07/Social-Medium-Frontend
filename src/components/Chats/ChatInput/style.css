@@ -80,7 +80,8 @@
     border-radius: 2rem;
     display: flex;
     align-items: center;
-    gap: 2rem;
+    justify-content: space-between;
+    /* gap: 2rem; */
     background-color: #ffffff34;
     margin-left: 3px;
     margin-right: 5px;
@@ -104,14 +105,20 @@
     outline: none;
 }
 
-.input-container button {
-    padding: 0.3rem 2rem;
-    border-radius: 2rem;
+.input-container button[type=submit] {
+    padding: 0px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #00c6e1;
     border: none;
+    height: 45px;
+    width: 45px;
+    margin: 2px;
+}
+.input-container button[type=submit]:hover {
+    background-color: #00a9bf;
 }
 
 @media screen and (min-width: 720px) and (max-width: 1080px) {

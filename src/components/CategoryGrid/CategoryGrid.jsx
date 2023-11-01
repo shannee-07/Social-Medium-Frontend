@@ -7,6 +7,7 @@ import postData from '../../utils/postData';
 import getData from '../../utils/getData';
 import LoadingOverlay from '../LoadingOverlay/LoadingOverlay';
 import Notification from '../Notification/Notification';
+import { useNavigate } from 'react-router-dom';
 
 
 const categoryData = [
@@ -61,13 +62,15 @@ const categoryData = [
 
 // const interests = ["Travel Photography", "Technology", "Photography"]
 
-const CategoryGrid = () => {
+const CategoryGrid = ({callback}) => {
     const [list, setList] = useState(categoryData);
     const [loading, setLoading] = useState(false);
     const [myInterests, setMyInterests] = useState([]);
     const [isElementVisible, setElementVisible] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
     const [notificationMessage, setNotificationMessage] = useState("");
+
+    const navigate = useNavigate();
 
     const handleItemClick = (name) => {
         if (myInterests.includes(name)) {
@@ -85,6 +88,7 @@ const CategoryGrid = () => {
         // console.log(result);
         setMyInterests(result.interests);
         setLoading(false);
+
         // refreshList();
     }
 
@@ -101,6 +105,8 @@ const CategoryGrid = () => {
         const response = await postData(updateInterestsRoute, reqBody);
         if (response.success) {
             triggerNotification('Updated Interests Successfully')
+            // navigate(-1);
+            callback();
         } else {
             triggerNotification('Failed to Update Interests');
         }
@@ -131,7 +137,7 @@ const CategoryGrid = () => {
 
     return (
         <>
-            {showNotification?<Notification message={notificationMessage}/>:null}
+            {showNotification ? <Notification message={notificationMessage} /> : null}
             {loading ? <LoadingOverlay /> : <>
                 <div className="category-grid">
                     {list.map((category, index) => {

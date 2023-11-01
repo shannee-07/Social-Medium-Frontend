@@ -6,14 +6,17 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { sendMessageRoute, recieveMessageRoute } from "../../../utils/APIRoutes";
 import { FaEllipsisH } from "react-icons/fa";
-// import "./ChatContainer.css"
-
+import "./ChatContainer.css"
+import dateTimeConverter from "../../../utils/dateTimeConverter";
 
 export default function ChatContainer({ currentChat, socket }) {
   const [messages, setMessages] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
+
+  let displayDate = "";
+
 
   useEffect(async () => {
     const data = await JSON.parse(
@@ -45,23 +48,32 @@ export default function ChatContainer({ currentChat, socket }) {
       to: currentChat._id,
       from: data._id,
       msg,
+      timestamp: Date.now()
     });
     await axios.post(sendMessageRoute, {
       from: data._id,
       to: currentChat._id,
       message: msg,
+      timestamp: Date.now()
     });
 
     const msgs = [...messages];
-    msgs.push({ fromSelf: true, message: msg });
+    msgs.push({ fromSelf: true, message: msg, timestamp: Date.now().toString() });
     setMessages(msgs);
   };
+
 
   useEffect(() => {
     if (socket.current) {
       socket.current.on("msg-recieve", (msg) => {
-        setArrivalMessage({ fromSelf: false, message: msg });
+        console.log("Message Received");
+        setArrivalMessage({ fromSelf: false, message: msg, timestamp: Date.now().toString() });
       });
+
+      // Clean up the event handler when the component unmounts
+      return () => {
+        socket.current.off("msg-recieve");
+      };
     }
   }, []);
 
@@ -93,14 +105,28 @@ export default function ChatContainer({ currentChat, socket }) {
       </div>
       <div className="chat-messages">
         {messages.map((message) => {
+          // console.log(messages);
+          let showDate = false;
+          const msgTimestamp = dateTimeConverter(message.timestamp);
+          if (displayDate !== msgTimestamp.date) {
+            showDate = true;
+            displayDate = msgTimestamp.date;
+          }
+
+          // const date = form
           return (
             <div ref={scrollRef} key={uuidv4()}>
+              {showDate ? <div className="show-date">{msgTimestamp.date}</div> : null}
               <div
                 className={`message ${message.fromSelf ? "sended" : "recieved"
                   }`}
               >
+
                 <div className="content ">
                   <p>{message.message}</p>
+                  <div className="msg-time-container">
+                    <span className="msg-time">{msgTimestamp.time}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -177,8 +203,9 @@ const Container = styled.div`
         max-width: 40%;
         overflow-wrap: break-word;
         padding: 1rem;
+        padding-bottom: 0px;
         font-size: 1.1rem;
-        border-radius: 1rem;
+       
         color: #001927;
         @media screen and (min-width: 720px) and (max-width: 1480px) {
           max-width: 70%;
@@ -188,12 +215,19 @@ const Container = styled.div`
     .sended {
       justify-content: flex-end;
       .content {
+        border-top-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        
         background-color: #5becff;
       }
     }
     .recieved {
       justify-content: flex-start;
       .content {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
         background-color: #5becff;
       }
     }
