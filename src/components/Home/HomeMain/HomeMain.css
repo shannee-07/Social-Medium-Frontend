@@ -59,15 +59,21 @@
 }
 
 .create-post-button{
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    /* background-color: #0066bf; */
+    color: white;
     border: 1px solid #0066bf;
-    color: #0066bf;
+    background: linear-gradient(to bottom, #083953, #0066bf);
     border-radius: 4px;
-    padding: 4px 8px;
+    padding: 5px 9px;
     cursor: pointer;
     font-size: 15px;
     width: fit-content;
+    margin-top: 8px;
+    /* transition: ; */
 }
+
 .create-post-button:hover{
-    font-size: 16px;
+    background: linear-gradient(to bottom, #062a3d, #00549e);
+
 }
