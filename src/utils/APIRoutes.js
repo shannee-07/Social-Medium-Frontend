@@ -1,5 +1,5 @@
-// export const host = "https://fleximedia.onrender.com";
-export const host = "http://localhost:5000";
+export const host = "https://fleximedia.onrender.com";
+// export const host = "http://localhost:5000";
 
 // Auth
 export const loginRoute = `${host}/api/auth/login`;
