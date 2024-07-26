@@ -1,1 +1,1 @@
-Personal project deployed link: https://flexi-media.onrender.com/login
+Personal project deployed link: https://flexi-media.onrender.com
